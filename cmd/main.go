@@ -28,7 +28,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	authService := service.NewAuthService(db)
+	authService := service.NewAuthService(cfg,db)
 
 	lis, err := net.Listen("tcp", cfg.GrpcPort)
 	if err != nil {

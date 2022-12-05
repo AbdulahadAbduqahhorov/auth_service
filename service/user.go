@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 
+	"github.com/AbdulahadAbduqahhorov/gRPC/blogpost/auth_service/config"
 	"github.com/AbdulahadAbduqahhorov/gRPC/blogpost/auth_service/genproto/auth_service"
 	"github.com/AbdulahadAbduqahhorov/gRPC/blogpost/auth_service/storage"
 	"github.com/AbdulahadAbduqahhorov/gRPC/blogpost/auth_service/util"
@@ -12,12 +13,14 @@ import (
 )
 
 type authService struct {
+	cfg config.Config
 	auth_service.UnimplementedAuthServiceServer
 	stg storage.StorageI
 }
 
-func NewAuthService(db *sqlx.DB) *authService {
+func NewAuthService(cfg config.Config,db *sqlx.DB) *authService {
 	return &authService{
+		cfg:cfg,
 		stg: storage.NewStoragePg(db),
 	}
 }

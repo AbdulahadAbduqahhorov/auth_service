@@ -23,6 +23,8 @@ type Config struct {
 
 	DefaultOffset string
 	DefaultLimit  string
+
+	SecretKey string
 }
 
 // Load ...
@@ -47,6 +49,8 @@ func Load() Config {
 
 	config.DefaultOffset = cast.ToString(getOrReturnDefaultValue("DEFAULT_OFFSET", "0"))
 	config.DefaultLimit = cast.ToString(getOrReturnDefaultValue("DEFAULT_LIMIT", "10"))
+
+	config.SecretKey = cast.ToString(getOrReturnDefaultValue("SECRET_KEY", "yoursecretkey"))
 
 	return config
 }
